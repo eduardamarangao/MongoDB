@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/bancoqualquer").then(() => {
+
+
+mongoose.Promise = global.Promise;
+mongoose
+  .connect("mongodb://localhost/bancoqualquer", {
+    useMongoClient: true,
+  })
+  .then(() => {
     console.log("MongoDB conectado...");
-}).catch((erro) => {
-    console.log("Erro ao conectar" + erro);
-});
+  })
+  .catch((err) => {
+    console.log("Erro ao conectar" + err);
+  });
